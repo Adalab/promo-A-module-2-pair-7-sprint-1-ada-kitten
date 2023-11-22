@@ -1,8 +1,8 @@
 'use strict';
 
-const kittenList= document.querySelector ('.js_list')
-const kitteOne= kittenList.innerHTML;
-kittenList.innerHTML=  `<li class="card">
+const kittenList = document.querySelector ('.js_list');
+
+const kittenOne= `<li class="card">
 <article>
   <img
     class="card_img"
@@ -18,6 +18,7 @@ kittenList.innerHTML=  `<li class="card">
    </p>
 </article>
 </li>`;
+
 const kittenTwo = `<li class="card">
 <img class="card_img" src="https://dev.adalab.es/sphynx-gato.webp" alt="sphynx-cat" />
 <h3 class="card_title">Fiona</h3>
@@ -40,3 +41,4 @@ const kittenThree=  `<li class="card">
 </p>
 </li>`;
 
+kittenList.innerHTML= kittenOne + kittenTwo + kittenThree;
