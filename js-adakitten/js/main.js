@@ -42,3 +42,45 @@ const kittenThree=  `<li class="card">
 </li>`;
 
 kittenList.innerHTML= kittenOne + kittenTwo + kittenThree;
+
+const formSection = document.querySelector ('.js_formSection');
+
+const addButton = document.querySelector ('.js_addButton');
+
+addButton.addEventListener ('click', (event) => {formSection.classList.toggle ('collapsed')});
+
+const btnAdd = document.querySelector ('.js-btn-add');
+
+const inputPhoto = document.querySelector('.js-input-photo');
+const inputName = document.querySelector('.js-input-name');
+const inputBreed = document.querySelector('.js-input-breed');
+const inputDesc = document.querySelector('.js-input-desc');
+
+btnAdd.addEventListener ('click', (event) => {
+  
+  event.preventDefault();
+
+  //para quitar el submit del botón "Añadir"
+
+  const valueDesc = inputDesc.value;
+  const valuePhoto = inputPhoto.value;
+  const valueName = inputName.value;
+  const valueBreed = inputBreed.value;
+
+  const newKittenHTML = `<li class="card">
+  <article>
+    <img
+      class="card_img"
+      src="` + valuePhoto + `"
+      alt="gatito"
+    />
+    <h3 class="card_title">` + valueName + `</h3>
+    <h4 class="card_race">` + valueBreed + `</h4>
+    <p class="card_description">
+        ` + valueDesc + `
+     </p>
+  </article>
+  </li>`;
+
+  kittenList.innerHTML += newKittenHTML;
+});
