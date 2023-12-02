@@ -1,43 +1,47 @@
 "use strict";
 
-const kittenList = document.querySelector ('.js_list');
+const kittenList = document.querySelector(".js_list");
 
-const kittenOne = `<li class="card">
-<article>
-  <img
-    class="card_img"
-    src="${kittenImage1}"
-    alt="gatito"
-  />
-  <h3 class="card_title">${kittenName1}</h3>
-  <h4 class="card_race">${kittenBreed1}</h4>
-  <p class="card_description">${kittenDesc1}</p>
-</article>
-</li>`;
+function renderKitten(url, desc, name, race) {
+  return `<li class="card">
+      <article>
+        <img class="card_img" src="${url}" alt="gatito" />
+        <h3 class="card_title">${name}</h3>
+        <h4 class="card_race">${race}</h4>
+        <p class="card_description">${desc}</p>
+      </article>
+    </li>`;
+}
 
-const kittenTwo = `<li class="card">
-<img class="card_img" src="https://dev.adalab.es/sphynx-gato.webp" alt="sphynx-cat" />
-<h3 class="card_title">Fiona</h3>
-<h4 class="card_race">Sphynx</h4>
-<p class="card_description">
-  Produce fascinación y curiosidad. Exótico, raro, bello, extraño…
-  hasta con pinta de alienígena han llegado a definir a esta raza
-  gatuna que se caracteriza por la «ausencia» de pelo.
-</p>
-</li>`;
+const kittenOne = renderKitten(
+  "https://dev.adalab.es/gato-siames.webp",
+  "Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asia al menos hace 500 años, donde tuvo su origen muy posiblemente.",
+  "Anastacio",
+  "Siamés"
+);
 
-const kittenThree = `<li class="card">
-<img class="card_img" src="https://dev.adalab.es/maine-coon-cat.webp" alt="maine-coon-cat" />
-<h3 class="card_title">Cielo</h3>
-<h4 class="card_race">Maine Coon</h4>
-<p class="card_description">
-  Tienen la cabeza cuadrada y los ojos simétricos, por lo que su
-  bella mirada se ha convertido en una de sus señas de identidad.
-  Sus ojos son grandes y las orejas resultan largas y en punta.
-</p>
-</li>`;
+const kittenTwo = renderKitten(
+  "https://dev.adalab.es/sphynx-gato.webp",
+  "Produce fascinación y curiosidad. Exótico, raro, bello, extraño… hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.",
+  "Fiona",
+  "Sphynx"
+);
 
-kittenList.innerHTML= kittenOne + kittenTwo + kittenThree;
+const kittenThree = renderKitten(
+  "https://dev.adalab.es/maine-coon-cat.webp",
+  "Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.",
+  "Cielo",
+  "Maine Coon"
+);
+
+const kittenFour = renderKitten(
+  "https://placekitten.com/200/139",
+  "Paca es una gata muy buena y sociable",
+  "Paca",
+  "Fiera"
+);
+
+kittenList.innerHTML= kittenOne + kittenTwo + kittenThree + kittenFour;
 
 const formSection = document.querySelector ('.js_formSection');
 
@@ -104,19 +108,32 @@ btnAdd.addEventListener ('click', (event) => {
   inputPhoto.value = "";
 });
 
-button_search.addEventListener("click", (event) => {
-  event.preventDefault();
+const buttonSearch = document.querySelector('.js-btn-search');
+const input_search_desc = document.querySelector('.js_in_search_desc');
+
+
+const kittenDesc1 = `Porte elegante, su patrón de color tan característico y sus ojos
+  de un azul intenso, pero su historia se remonta a Asia al menos
+  hace 500 años, donde tuvo su origen muy posiblemente.`;
+const kittenDesc2 = `Produce fascinación y curiosidad. Exótico, raro, bello, extraño…
+  hasta con pinta de alienígena han llegado a definir a esta raza
+  gatuna que se caracteriza por la «ausencia» de pelo.`;
+const kittenDesc3 = `Tienen la cabeza cuadrada y los ojos simétricos, por lo que su
+  bella mirada se ha convertido en una de sus señas de identidad.
+  Sus ojos son grandes y las orejas resultan largas y en punta.`;
+
+const filterKitten = (event) => {
   const descrSearchText = input_search_desc.value;
-  let resultHTML = "";
+
   if (kittenDesc1.includes(descrSearchText)) {
-    resultHTML += kittenOne;
-    console.log("gato uno");
-  } else if (kittenDesc2.includes(descrSearchText)) {
-    resultHTML += kittenTwo;
-    console.log("gato dos");
-  } else if (kittenDesc3.includes(descrSearchText)) {
-    resultHTML += kittenThree;
-    console.log("gato tres");
+    listElement.innerHTML += kittenOne;
   }
-  kittenList.innerHTML = resultHTML;
-});
+  if (kittenDesc2.includes(descrSearchText)) {
+    listElement.innerHTML += kittenTwo;
+  }
+  if (kittenDesc3.includes(descrSearchText)) {
+    listElement.innerHTML += kittenThree;
+  }
+};
+
+buttonSearch.addEventListener('click', filterKitten);
