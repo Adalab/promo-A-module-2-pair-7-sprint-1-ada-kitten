@@ -41,11 +41,11 @@ const kittenFour = renderKitten(
   "Fiera"
 );
 
-kittenList.innerHTML= kittenOne + kittenTwo + kittenThree + kittenFour;
+kittenList.innerHTML = kittenOne + kittenTwo + kittenThree + kittenFour;
 
-const formSection = document.querySelector ('.js_formSection');
+const formSection = document.querySelector(".js_formSection");
 
-const addButton = document.querySelector ('.js_addButton');
+const addButton = document.querySelector(".js_addButton");
 
 // addButton.addEventListener ('click', (event) => {formSection.classList.toggle ('collapsed')});
 
@@ -66,15 +66,13 @@ function handleClickNewCatForm(event) {
   }
 }
 
-const btnAdd = document.querySelector ('.js-btn-add');
+const btnAdd = document.querySelector(".js-btn-add");
+const inputPhoto = document.querySelector(".js-input-photo");
+const inputName = document.querySelector(".js-input-name");
+const inputBreed = document.querySelector(".js-input-breed");
+const inputDesc = document.querySelector(".js-input-desc");
 
-const inputPhoto = document.querySelector('.js-input-photo');
-const inputName = document.querySelector('.js-input-name');
-const inputBreed = document.querySelector('.js-input-breed');
-const inputDesc = document.querySelector('.js-input-desc');
-
-btnAdd.addEventListener ('click', (event) => {
-  
+btnAdd.addEventListener("click", (event) => {
   event.preventDefault();
 
   //para quitar el submit del botón "Añadir"
@@ -89,13 +87,21 @@ btnAdd.addEventListener ('click', (event) => {
   <article>
     <img
       class="card_img"
-      src="` + valuePhoto + `"
+      src="` +
+    valuePhoto +
+    `"
       alt="gatito"
     />
-    <h3 class="card_title">` + valueName + `</h3>
-    <h4 class="card_race">` + valueBreed + `</h4>
+    <h3 class="card_title">` +
+    valueName +
+    `</h3>
+    <h4 class="card_race">` +
+    valueBreed +
+    `</h4>
     <p class="card_description">
-        ` + valueDesc + `
+        ` +
+    valueDesc +
+    `
      </p>
   </article>
   </li>`;
@@ -108,10 +114,8 @@ btnAdd.addEventListener ('click', (event) => {
   inputPhoto.value = "";
 });
 
-const buttonSearch = document.querySelector('.js-btn-search');
-const input_search_desc = document.querySelector('.js_in_search_desc');
-
-
+const buttonSearch = document.querySelector(".js_btn_search");
+const input_search_desc = document.querySelector(".js_in_search_desc");
 const kittenDesc1 = `Porte elegante, su patrón de color tan característico y sus ojos
   de un azul intenso, pero su historia se remonta a Asia al menos
   hace 500 años, donde tuvo su origen muy posiblemente.`;
@@ -123,17 +127,22 @@ const kittenDesc3 = `Tienen la cabeza cuadrada y los ojos simétricos, por lo qu
   Sus ojos son grandes y las orejas resultan largas y en punta.`;
 
 const filterKitten = (event) => {
+  event.preventDefault();
+
   const descrSearchText = input_search_desc.value;
 
-  if (kittenDesc1.includes(descrSearchText)) {
-    listElement.innerHTML += kittenOne;
+  // Limpiar la lista antes de realizar la búsqueda
+  kittenList.innerHTML = "";
+
+  // Verificar si cada descripción incluye el texto de búsqueda
+  if (kittenDesc1.toLowerCase().includes(descrSearchText)) {
+    kittenList.innerHTML += kittenOne;
   }
-  if (kittenDesc2.includes(descrSearchText)) {
-    listElement.innerHTML += kittenTwo;
+  if (kittenDesc2.toLowerCase().includes(descrSearchText)) {
+    kittenList.innerHTML += kittenTwo;
   }
-  if (kittenDesc3.includes(descrSearchText)) {
-    listElement.innerHTML += kittenThree;
+  if (kittenDesc3.toLowerCase().includes(descrSearchText)) {
+    kittenList.innerHTML += kittenThree;
   }
 };
-
-buttonSearch.addEventListener('click', filterKitten);
+buttonSearch.addEventListener("click", filterKitten);
