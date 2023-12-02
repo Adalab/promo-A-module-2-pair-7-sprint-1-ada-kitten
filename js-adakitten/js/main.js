@@ -43,7 +43,24 @@ const formSection = document.querySelector ('.js_formSection');
 
 const addButton = document.querySelector ('.js_addButton');
 
-addButton.addEventListener ('click', (event) => {formSection.classList.toggle ('collapsed')});
+// addButton.addEventListener ('click', (event) => {formSection.classList.toggle ('collapsed')});
+
+addButton.addEventListener("click", handleClickNewCatForm);
+
+function showNewCatForm() {
+  formSection.classList.remove("collapsed");
+}
+function hideNewCatForm() {
+  formSection.classList.add("collapsed");
+}
+function handleClickNewCatForm(event) {
+  event.preventDefault();
+  if (formSection.classList.contains("collapsed")) {
+    showNewCatForm();
+  } else {
+    hideNewCatForm();
+  }
+}
 
 const btnAdd = document.querySelector ('.js-btn-add');
 
